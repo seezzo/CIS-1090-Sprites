@@ -50,7 +50,7 @@ function game(sprites, t, dt, up, down, left, right, space) {
 
     //Move badgers
     for (let i = 1; i < 4; i++) {
-        sprites[i].x -= dt * (100 + 30 * i);
+        sprites[i].x -= dt * (100 + 30 * i + 10*score);
         if (sprites[i].x < -50) {
             sprites[i].x = 800;
             score++;

@@ -1,10 +1,12 @@
-import game from "./game.js";
+import {name, game, setup} from "./game.js";
+
+document.querySelector("#name").innerText = name;
 
 let sprites = [
-    { image: "🏃‍♂️", x: 0, y: 0, flip: false },
-    { image: "🦡", x: 600, y: 0, flip: false },
-    { image: "🦡", x: 300, y: 0, flip: false },
-    { image: "🦡", x: 900, y: 0, flip: false }
+    { image: "?", x: 0, y: 0, flip: false },
+    { image: "?", x: 0, y: 0, flip: false },
+    { image: "?", x: 0, y: 0, flip: false },
+    { image: "?", x: 0, y: 0, flip: false }
 ];
 
 let up, down, left, right, space;
@@ -53,4 +55,7 @@ function frame() {
     scoreSpan.innerText = score;
     requestAnimationFrame(frame);
 }
+
+setup(sprites);
+
 requestAnimationFrame(frame);

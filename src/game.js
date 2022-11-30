@@ -1,6 +1,16 @@
+let name = "Badger Dodger";
+
 let dv = 0;
 let dead = false;
 let score = 0;
+
+function setup(sprites){
+    for (let i = 1; i < 4; i++) {
+        sprites[i].image = "🦡";
+        sprites[i].y = 0;
+        sprites[i].x = 300 * i;
+    }
+}
 
 function game(sprites, t, dt, up, down, left, right, space) {
     if (dead) {
@@ -9,7 +19,7 @@ function game(sprites, t, dt, up, down, left, right, space) {
             dead = false;
             sprites[0].y = 150;
         }
-        return 0;
+        return score;
     }
 
     if (right) {
@@ -45,6 +55,7 @@ function game(sprites, t, dt, up, down, left, right, space) {
         dv = dv - .5;
     } else {
         dv = 0;
+        sprites[0].y = 0;
     }
 
 
@@ -52,9 +63,10 @@ function game(sprites, t, dt, up, down, left, right, space) {
     for (let i = 1; i < 4; i++) {
         sprites[i].x -= dt * (100 + 30 * i + 10*score);
         if (sprites[i].x < -50) {
-            sprites[i].x = 800;
+            sprites[i].x = 800 + Math.random() * 400;
             score++;
         }
+        sprites[i].y = Math.sin(20*t + 10*i);
     }
 
     if (!dead) {
@@ -70,4 +82,4 @@ function game(sprites, t, dt, up, down, left, right, space) {
     return score;
 };
 
-export default game;
+export {name, game, setup};

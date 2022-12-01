@@ -58,8 +58,8 @@ body {
   position: relative;
   left: 200px;
   background: gray;
-  height: 400px;
-  width: 300px;
+  height: 350px;
+  width: 220px;
   transform:
     rotateX(40deg) rotateZ(-35deg);
   transform-style: preserve-3d;
@@ -69,11 +69,11 @@ body {
 }
 
 #current > h2 {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 #current > .icon {
-  font-size: 100px;
+  font-size: 70px;
 }
 
 #current > .instructions {
@@ -87,11 +87,13 @@ body {
 
 #shelf {
   display: inline-block;
+  margin: 30px;
 }
 
 #shelf > .game {
+  cursor: pointer;
   background: gray;
-  width: 300px;
+  width: 220px;
   height: 50px;
   border-radius: 15px;
   margin: 2px;

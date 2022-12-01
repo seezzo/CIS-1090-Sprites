@@ -1,17 +1,21 @@
 //The y velocity of the hero
-let yVelocity = 0;
+let yVelocity;
 
 //True when the hero is dead
-let dead = false;
+let dead;
 
 //Initial score is zero
-let score = 0;
+let score;
 
 
 
 //This setup function is called once
 //So you can set everything up.
 function setup(sprites) {
+    yVelocity = 0;
+    score = 0;
+    dead = false;
+
     //Make sprite zero a little person at 0,0
     sprites[0].image = "🧍‍♂️";
     sprites[0].x = 0;
@@ -136,7 +140,7 @@ function frame(sprites, t, dt, up, down, left, right, space) {
 export default {
     name: "Badger Dodger",
     instructions: "Left and Right arrows to move, Up to jump, Space to restart.",
-    icon: "",
+    icon: "🦡",
     background: {
         "background-color": "skyblue",
         "background-image": "linear-gradient(#424299, skyblue)",

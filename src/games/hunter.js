@@ -23,6 +23,9 @@ function setup(sprites) {
     sprites[4].x = 500;
     sprites[4].y = 300;
 
+    facingRight = true;
+    vArrow = false;
+    score = 0;
 }
 
 //Compute the distance between two sprites
@@ -33,11 +36,11 @@ function distance(a, b) {
 }
 
 //Initial score is zero
-let score = 0;
+let score;
 
 const walk = 200;
-let facingRight = true;
-let vArrow = 0;
+let facingRight;
+let vArrow;
 
 /**
  * Game function called every frame

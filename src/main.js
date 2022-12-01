@@ -1,10 +1,20 @@
 import hunter from "./games/hunter.js";
-import badger from "./games/hunter.js";
+import badger from "./games/badger.js";
 
 let games = [
     hunter,
     badger
 ];
+
+let shelf = document.querySelector("#shelf");
+games.forEach(game=>{
+    let div = document.createElement("div");
+    div.classList.add("game");
+    div.innerHTML = `${game.name}<span class='icon'>${game.icon}</span>`;
+    shelf.appendChild(div);
+
+    div.addEventListener('click', ()=>loadGame(game));
+});
 
 //HTML Elements to update
 let app = document.querySelector("#app");
@@ -17,6 +27,12 @@ let currentGame = false;
 
 
 function loadGame(game) {
+    if ( currentGame ){
+        for (let i in currentGame.background) {
+            app.style[i] = "";
+        };
+    }
+
     sprites = [
         { image: "", x: 0, y: 0, flip: false },
         { image: "", x: 0, y: 0, flip: false },

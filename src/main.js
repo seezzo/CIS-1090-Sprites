@@ -49,18 +49,23 @@ document.onkeyup = document.onkeydown = function (event) {
     let pressed = event.type == "keydown";
     switch (event.key) {
         case 'ArrowUp':
+            event.preventDefault();
             up = pressed;
             break;
         case 'ArrowDown':
+            event.preventDefault();
             down = pressed;
             break;
         case 'ArrowLeft':
+            event.preventDefault();
             left = pressed;
             break;
         case 'ArrowRight':
+            event.preventDefault();
             right = pressed;
             break;
         case ' ':
+            event.preventDefault();
             space = pressed;
             break;
     }

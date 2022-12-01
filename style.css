@@ -1,28 +1,27 @@
 html {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 body {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
-  background-color: rgb(41, 41, 41);
+  background-color: rgb(51, 51, 51);
   color: white;
   font-family: cursive;
 }
 
 #app {
-  background-color: skyblue;
-  margin: 50px;
-  border: 1px solid black;
-  border-bottom: 50px solid green;
   width: 800px;
-  height: 400px;
-  margin: auto;
+  height: 500px;
   position: relative;
   overflow: hidden;
+  margin: 0px;
 }
 
 .sprite {
@@ -30,10 +29,77 @@ body {
   bottom: 0px;
   left: 0px;
   font-size: xxx-large;
+  color: black;
 }
 
 #score {
   position: absolute;
   left: 0px;
   font-size: x-large;
+}
+
+#tv {
+  margin: auto;
+  display: inline-block;
+}
+
+#inset {
+  border: 20px inset gray;
+  border-radius: 10px;
+}
+
+#wood {
+  border: 30px solid;
+  border-image: repeating-linear-gradient(40deg, hsl(30, 50%, 15%), hsl(20, 50%, 30%), hsl(25, 40%, 20%) 8px) 60;
+}
+
+#current {
+  float: left;
+  position: relative;
+  left: 200px;
+  background: gray;
+  height: 400px;
+  width: 300px;
+  transform:
+    rotateX(40deg) rotateZ(-35deg);
+  transform-style: preserve-3d;
+  border-radius: 15px;
+  box-shadow:
+    -28px 28px 28px 0 rgba(0, 0, 0, 0.25);
+}
+
+#current > h2 {
+  padding-top: 20px;
+}
+
+#current > .icon {
+  font-size: 100px;
+}
+
+#current > .instructions {
+  margin: 20px;
+  padding: 10px;
+  border: 3px solid brown;
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(171, 171, 171);
+}
+
+#shelf {
+  display: inline-block;
+}
+
+#shelf > .game {
+  background: gray;
+  width: 300px;
+  height: 50px;
+  border-radius: 15px;
+  margin: 2px;
+}
+#shelf > .game > .icon {
+  font-size: 30px;
+}
+
+#shelf > .game > h2 {
+
 }

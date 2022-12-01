@@ -1,5 +1,3 @@
-let name = "Badger Dodger";
-
 //The y velocity of the hero
 let yVelocity = 0;
 
@@ -8,6 +6,8 @@ let dead = false;
 
 //Initial score is zero
 let score = 0;
+
+
 
 //This setup function is called once
 //So you can set everything up.
@@ -37,7 +37,7 @@ function setup(sprites) {
  * @param space     "
  * @returns The current score
  */
-function game(sprites, t, dt, up, down, left, right, space) {
+function frame(sprites, t, dt, up, down, left, right, space) {
 
 
     if (dead) {
@@ -68,7 +68,7 @@ function game(sprites, t, dt, up, down, left, right, space) {
             sprites[0].image = "🏃‍♂️";
         } else {
             //Otherwise swap between two poses
-            sprites[0].image = (Math.round(t * 10) % 2) ? "🧍‍♂️" : "🏃‍♂️";
+            sprites[0].image = (Math.round(t * 10) % 2) ? "🚶" : "🏃‍♂️";
         }
     } else {
         //Staying still? Use still person
@@ -133,4 +133,15 @@ function game(sprites, t, dt, up, down, left, right, space) {
     return score;
 };
 
-export { name, game, setup };
+export default {
+    name: "Badger Dodger",
+    instructions: "Left and Right arrows to move, Up to jump, Space to restart.",
+    icon: "",
+    background: {
+        "background-color": "skyblue",
+        "background-image": "linear-gradient(#424299, skyblue)",
+        "border-bottom": "50px solid green"
+    },
+    frame,
+    setup,
+};

@@ -57,7 +57,7 @@ function loadGame(game) {
     };
 }
 
-loadGame(games[1]);
+loadGame(games[0]);
 
 //Button state
 let up, down, left, right, space;

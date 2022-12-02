@@ -6,6 +6,14 @@ let alive;  //is the
 //You might have some constants that you use
 const speed = 300;  //In pixels per second
 
+//This is a helper function to compute the distance
+//between two sprites
+function distance(a, b) {
+    let dx = a.x - b.x;
+    let dy = a.y - b.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
 //This setup function is called once when the game starts
 function setup(sprites) {
     score = 0;      //set score to zero
@@ -46,6 +54,8 @@ function frame(sprites, t, dt, up, down, left, right, space) {
     //Keep references to the sprites in some variables with
     //better names:
     const truck = sprites[0]; //Easier to remember
+    const house = sprites[1]; //Easier to remember
+    const fire = sprites[2]; //Easier to remember
 
     //Move the fire engine
     if (up) {
@@ -70,6 +80,11 @@ function frame(sprites, t, dt, up, down, left, right, space) {
     if (left) {
         truck.x -= speed * dt;
         truck.flipH = false;
+    }
+
+    //If the truck is close to the house
+    if ( distance(truck, house) < 10 ){
+        fire.image = ""; //Make the fire go away
     }
 
     //A very simple repeating animation

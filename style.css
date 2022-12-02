@@ -56,7 +56,7 @@ body {
 #current {
   float: left;
   position: relative;
-  left: 200px;
+  left: 100px;
   background: gray;
   height: 350px;
   width: 220px;
@@ -65,7 +65,13 @@ body {
   transform-style: preserve-3d;
   border-radius: 15px;
   box-shadow:
-    -28px 28px 28px 0 rgba(0, 0, 0, 0.25);
+    -28px 28px 2px 0 rgba(0, 0, 0, 0.75);
+}
+
+#table {
+  width: 800px;
+  margin: auto;
+  position: relative;
 }
 
 #current > h2 {
@@ -86,6 +92,8 @@ body {
 }
 
 #shelf {
+  position: absolute;
+  right: 0px;
   display: inline-block;
   margin: 30px;
 }

@@ -59,12 +59,19 @@ function frame(sprites, t, dt, up, down, left, right, space) {
     //Move the man.
     if (right) {
         sprites[0].x += dt * 500;
-        sprites[0].flip = true; //And flip his sprite if he is going right
+        sprites[0].flipH = true; //And flipH his sprite if he is going right
     } else if (left) {
         sprites[0].x -= dt * 500;
-        sprites[0].flip = false;
+        sprites[0].flipH = false;
     }
 
+    //If you try to run past the ends of the screen
+    //it stips you
+    if (sprites[0].x < 0)
+        sprites[0].x = 0;
+    if (sprites[0].x > 750)
+        sprites[0].x = 750;
+        
     if (left || right) {
         //If we are moving left or right
         if (sprites[0].y > 0) {
@@ -79,12 +86,6 @@ function frame(sprites, t, dt, up, down, left, right, space) {
         sprites[0].image = "🧍‍♂️";
     }
 
-    //If you try to run past the ends of the screen
-    //it stips you
-    if (sprites[0].x < 0)
-        sprites[0].x = 0;
-    if (sprites[0].x > 750)
-        sprites[0].x = 750;
 
     //If up pressed, and on the ground,
     //jump, give hero a positive velocity
@@ -142,6 +143,7 @@ export default {
     instructions: "Left and Right arrows to move, Up to jump, Space to restart.",
     icon: "🦡",
     background: {
+        //A more complicated background
         "background-color": "skyblue",
         "background-image": "linear-gradient(#424299, skyblue)",
         "border-bottom": "50px solid green"

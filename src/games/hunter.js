@@ -1,3 +1,19 @@
+//Game constants
+const walk = 200;
+const arrowSpeed = 400;
+
+//Initial score is zero
+let score;
+let vArrow;
+
+//This is a helper function to compute the distance
+//between two sprites
+function distance(a, b) {
+    let dx = a.x - b.x;
+    let dy = a.y - b.y;
+    return Math.sqrt(dx * dx + dy * dy);
+}
+
 //This setup function is called once
 //So you can set everything up.
 function setup(sprites) {
@@ -23,24 +39,11 @@ function setup(sprites) {
     sprites[4].x = 500;
     sprites[4].y = 300;
 
-    facingRight = true;
     vArrow = false;
     score = 0;
 }
 
-//Compute the distance between two sprites
-function distance(a, b) {
-    let dx = a.x - b.x;
-    let dy = a.y - b.y;
-    return Math.sqrt(dx * dx + dy * dy);
-}
 
-//Initial score is zero
-let score;
-
-const walk = 200;
-let facingRight;
-let vArrow;
 
 /**
  * Game function called every frame
@@ -75,43 +78,42 @@ function frame(sprites, t, dt, up, down, left, right, space) {
     }
     if (right) {
         hunter.x += walk * dt;
-        facingRight = true;
+        bow.flipH = false;
     }
     if (left) {
         hunter.x -= walk * dt;
-        facingRight = false;
+        bow.flipH = true;
     }
-    //The head follows the body, and bobs up and
-    //down over time
+    //The head follows the body...
     head.x = hunter.x - 12;
-    head.y = hunter.y + 35 + 2 * Math.sin(3 * t);
+    head.y = hunter.y + 35;
+    //And bobs up and down
+    head.y += 2 * Math.sin((left||right?9:3) * t);
 
-    //The bow also follows the body, but flips to one
+    //The bow also follows the body, but flipHs to one
     //side or the other
     bow.y = hunter.y + 15;
-    if (facingRight) {
-        bow.flip = false;
-        bow.x = hunter.x + 40;
-    } else {
-        bow.flip = true;
+    if (bow.flipH) {
         bow.x = hunter.x - 20;
+    } else {
+        bow.x = hunter.x + 40;
     }
 
     //If the arrow is not moving...
     if (vArrow == 0) {
         //It follows the hunter like the bow
         arrow.y = hunter.y + 10;
-        if (facingRight) {
-            arrow.x = hunter.x + 30;
-            arrow.flip = false;
-        } else {
+        if (bow.flipH) {
             arrow.x = hunter.x - 40;
-            arrow.flip = true;
+            arrow.flipH = true;
+        } else {
+            arrow.x = hunter.x + 30;
+            arrow.flipH = false;
         }
     } else {
         //If the arrow is moving, change it's z position
         arrow.x += dt * vArrow;
-        arrow.flip = vArrow < 0;
+        arrow.flipH = vArrow < 0;
         //And stop it when it goes off screen
         if (arrow.x < -100 || arrow.x > 900)
             vArrow = 0;
@@ -120,13 +122,13 @@ function frame(sprites, t, dt, up, down, left, right, space) {
     //While the space bar is pressed...
     if (space) {
         //draw the bow
-        if (facingRight)
-            arrow.x = hunter.x + 20;
-        else
+        if (bow.flipH)
             arrow.x = hunter.x - 30;
+        else
+            arrow.x = hunter.x + 20;
         arrow.y = hunter.y + 10;
         //Set arrow velocity to +/- based on direction
-        vArrow = facingRight ? 400 : -400;
+        vArrow = bow.flipH ? -arrowSpeed : arrowSpeed;
         //Note while this sets the velocity each frame,
         //the position keeps getting reset until you
         //release the arrow

@@ -1,9 +1,11 @@
+import homework from "./games/homework.js";
 import hunter from "./games/hunter.js";
 import badger from "./games/badger.js";
 
 let games = [
+    homework,
     hunter,
-    badger
+    badger,
 ];
 
 let shelf = document.querySelector("#shelf");
@@ -34,12 +36,12 @@ function loadGame(game) {
     }
 
     sprites = [
-        { image: "", x: 0, y: 0, flip: false },
-        { image: "", x: 0, y: 0, flip: false },
-        { image: "", x: 0, y: 0, flip: false },
-        { image: "", x: 0, y: 0, flip: false },
-        { image: "", x: 0, y: 0, flip: false },
-        { image: "", x: 0, y: 0, flip: false }
+        { image: "", x: 0, y: 0, flipH: false },
+        { image: "", x: 0, y: 0, flipH: false },
+        { image: "", x: 0, y: 0, flipH: false },
+        { image: "", x: 0, y: 0, flipH: false },
+        { image: "", x: 0, y: 0, flipH: false },
+        { image: "", x: 0, y: 0, flipH: false }
     ];
 
     //Set the name in the HTML based on the game
@@ -55,7 +57,7 @@ function loadGame(game) {
     };
 }
 
-loadGame(hunter);
+loadGame(games[1]);
 
 //Button state
 let up, down, left, right, space;
@@ -115,7 +117,7 @@ function frame() {
             div.style.color = sprite.color;
             div.style.left = sprite.x + "px";
             div.style.bottom = sprite.y + "px";
-            div.style.transform = sprite.flip ? "scale(-1, 1)" : "";
+            div.style.transform = `scale(${sprite.flipH?-1:1},${sprite.flipY?-1:1})`;
         }
     }
 

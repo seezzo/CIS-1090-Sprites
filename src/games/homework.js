@@ -4,7 +4,7 @@ let score;  //The players score
 let alive;  //is the 
 
 //You might have some constants that you use
-const speed = 300;  //In pixels per second
+const speed = 450;  //In pixels per second
 
 //This is a helper function to compute the distance
 //between two sprites
@@ -23,18 +23,25 @@ function setup(sprites) {
     //But you can use emojis!
     // https://emojis.wiki/
 
-    sprites[0].image = "🚒"; //A fire engine
-    sprites[0].x = 100;
-    sprites[0].y = 100;
+    sprites[0].image = "🐄"; //A cow
+    sprites[0].x = 300;
+    sprites[0].y = 75;
 
-    //Putting two sprites together you
-    //can make more complicated things.
-    sprites[1].image = "🏠"; //A fire engine
-    sprites[1].x = 300;
+    sprites[1].image = "🍫";
+    sprites[1].x = 1;
     sprites[1].y = 100;
-    sprites[2].image = "🔥"; //A fire engine
-    sprites[2].x = 300;
-    sprites[2].y = 120;
+
+    sprites[2].image = "🌽";
+    sprites[2].x = 25;
+    sprites[2].y = 100;
+
+    sprites[3].image = "🥕";
+    sprites[3].x = 100;
+    sprites[3].y = 100;
+
+    sprites[4].image = "🍎";
+    sprites[4].x = 300;
+    sprites[4].y = 100;
 
 }
 
@@ -53,11 +60,13 @@ function setup(sprites) {
 function frame(sprites, t, dt, up, down, left, right, space) {
     //Keep references to the sprites in some variables with
     //better names:
-    const truck = sprites[0]; //Easier to remember
-    const house = sprites[1]; //Easier to remember
-    const fire = sprites[2]; //Easier to remember
+    const cow = sprites[0]; //Easier to remember
+    const chocolate = sprites[1]; //Easier to remember
+    const corn = sprites[2]; //Easier to remember
+    const carrot = sprites [3];
+    const apple = sprites [4];
 
-    //Move the fire engine
+    //Move the cow
     if (up) {
         //Speed is in pixels per second, and
         //dt is the number of seconds that have
@@ -66,40 +75,57 @@ function frame(sprites, t, dt, up, down, left, right, space) {
         //Multiply them together so that the
         //truck moves at the same speed if the
         //computer is fast or slow
-        truck.y += speed * dt;
+        cow.y += speed * dt;
     } 
     if (down) {
-        truck.y -= speed * dt;
+        cow.y -= speed * dt;
     }
     if (right) {
-        truck.x += speed * dt;
+        cow.x += speed * dt;
         //You can flipH a spright so it is facing
         //the other direction
-        truck.flipH = true;
+        cow.flipH = true;
     }
     if (left) {
-        truck.x -= speed * dt;
-        truck.flipH = false;
+        cow.x -= speed * dt;
+        cow.flipH = false;
     }
 
-    //If the truck is close to the house
-    if ( distance(truck, house) < 10 ){
-        fire.image = ""; //Make the fire go away
-    }
 
     //A very simple repeating animation
     sprites[2].y += Math.sin(t)/10;
 
+    if (sprites[0].x < 0)
+        sprites[0].x = 0;
+    if (sprites[0].x > 750)
+        sprites[0].x = 750;
+    if (sprites [0].y < 750)
+        sprites[0].y = 0;
+
+
+    let timeSinceFall=0;
+    timeSinceFall = timeSinceFall * dt;
+
+    if ( timeSinceFall > 2){
+        chocolate.y = 450;
+        timeSinceFall = 0;
+        chocolate.x = math.random() * 750;
+    }
+    console.log(chocolate.y);
+    chocolate.y = 5;
+
     return score;
+
 };
 
 export default {
-    name: "Homework",
+    name: "Cow Feeder",
     instructions: "Write your instructions here",
-    icon: "📝", //Choose an emoji icon
+    icon: "🐄", //Choose an emoji icon
     background: {
         //You can put CSS here to change your background
-        "background-color": "#555"
+        "background-color": "skyblue",
+        "border-bottom": "75px solid green"
     },
     frame,
     setup,

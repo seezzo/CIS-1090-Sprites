@@ -28,22 +28,25 @@ function setup(sprites) {
     sprites[0].y = 75;
 
     sprites[1].image = "🍫";
-    sprites[1].x = 1;
-    sprites[1].y = 100;
+    sprites[1].x = Math.random () * 75;
+    sprites[1].y = 500;
 
     sprites[2].image = "🌽";
-    sprites[2].x = 25;
-    sprites[2].y = 100;
+    sprites[2].x = Math.random () * 75;
+    sprites[2].y = 500;
 
     sprites[3].image = "🥕";
-    sprites[3].x = 100;
-    sprites[3].y = 100;
+    sprites[3].x = Math.random () * 75;
+    sprites[3].y = 500;
 
     sprites[4].image = "🍎";
-    sprites[4].x = 300;
-    sprites[4].y = 100;
+    sprites[4].x = Math.random () * 75;
+    sprites[4].y = 500;
 
 }
+
+let speed2 = 0; 
+const gravity = 450;
 
 /**
  * This function is called every frame
@@ -103,16 +106,43 @@ function frame(sprites, t, dt, up, down, left, right, space) {
         sprites[0].y = 0;
 
 
-    let timeSinceFall=0;
-    timeSinceFall = timeSinceFall * dt;
+    // acceleration and movement
+    
+    //Code to make the chocolate fall
+    chocolate.y = chocolate.y - dt * speed;
 
-    if ( timeSinceFall > 2){
+    if (chocolate.y <= 0){
         chocolate.y = 450;
-        timeSinceFall = 0;
-        chocolate.x = math.random() * 750;
+        speed2 = 25;
+        chocolate.x = Math.random () * 750;
     }
-    console.log(chocolate.y);
-    chocolate.y = 5;
+
+    //Code to make the carrot fall 
+    carrot.y = carrot.y - dt * speed;
+
+    if (carrot.y <= 0){
+        carrot.y = 450;
+        speed2 = 100;
+        carrot.x = Math.random () * 750;
+    }
+
+    //Code to make corn fall
+    corn.y = corn.y - dt * speed;
+
+    if (corn.y <= 0){
+        corn.y = 450;
+        speed2 = 200;
+        corn.x = Math.random () * 750;
+    }
+
+      //Code to make apple fall
+      apple.y = apple.y - dt * speed;
+
+      if (apple.y <= 0){
+          apple.y = 450;
+          speed2 = 100;
+          apple.x = Math.random () * 750;
+      }
 
     return score;
 
